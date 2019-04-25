@@ -1,13 +1,12 @@
 {% extends "dappx/base.html" %}
-{% block body_block %}
-<div class="container">
-  <div class="jumbotron">
-    <h1>Welcome to the Djungle !</h1>
-    {% if user.is_authenticated %}
-    <h2>Hello {{ user.username }}</h2>
-    {% else %}
-    <h2>Register or Login if you'd like to</h2>
-    {% endif %}
-  </div>
-</div>
+
+{% block content %}
+  <h1>Conference Management System</h1>
+  <p>Welcome to the conference Management System, {{user.username}} !</p>
+  <h2>Сontent</h2>
+  <p>The conference management system has the following record counts:</p>
+  <ul>
+    <li><strong>Articles:</strong> {{ num_articles }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+  </ul>
 {% endblock %}
