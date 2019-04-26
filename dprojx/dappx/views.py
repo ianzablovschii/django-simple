@@ -5,18 +5,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from dappx.models import Subject, Article, Author
+from dappx.models import Subject, Article, Author, UserProfileInfo
 from django.views import generic
 
 
-# def index(request):
-#    return render(request, 'dappx/index.html')
 def index(request):
     """View function for home page of site."""
 
     # Generate counts of some of the main objects
     num_articles = Article.objects.all().count()
-    
     
     # The 'all()' is implied by default.    
     num_authors = Author.objects.count()
@@ -28,6 +25,7 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'dappx/index.html', context=context)
+
 
 @login_required
 def special(request):
@@ -66,7 +64,6 @@ def register(request):
                            'profile_form': profile_form,
                            'registered': registered})
 
-
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -91,3 +88,15 @@ class ArticleListView(generic.ListView):
 
 class ArticleDetailView(generic.DetailView):
     model = Article
+
+class AuthorListView(generic.ListView):
+    model = Author
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+
+class UserDetailView(generic.DetailView):
+    model = UserProfileInfo
+
+def about(request):
+    return render(request, 'dappx/about.html')

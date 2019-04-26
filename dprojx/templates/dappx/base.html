@@ -16,12 +16,13 @@
         {# Django Home Link / Admin Link / Register Link#}
         <li><a class="navbar-brand" href="{% url 'index' %}">Conference Management</a></li>
         <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
-        <li><a class="navbar-link" href="{% url 'dappx:register' %}">Register</a></li>
-        {# Some logic on what to display for last item#}
+
         {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="">Profile</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
-        <li><a class="navbar-link" href="{% url 'dappx:user_login' %}">Login</a></li>
+          <li><a class="navbar-link" href="{% url 'dappx:register' %}">Sign Up</a></li>
+          <li><a class="navbar-link" href="{% url 'dappx:user_login' %}">Sign In</a></li>
         {% endif %}
       </ul>
     </div>
@@ -36,9 +37,9 @@
       {% block sidebar %}
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="">About</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'articles' %}">All articles</a></li>
-          <li><a href="">All authors</a></li>
+          <li><a href="{% url 'authors' %}">All authors</a></li>
         </ul>
      {% endblock %}
       </div>

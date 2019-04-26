@@ -7,13 +7,16 @@ from django.urls import reverse
 
 class UserProfileInfo(models.Model):
   
-  user = models.OneToOneField(User, on_delete=models.CASCADE)
-  portfolio_site = models.URLField(blank=True)
-  profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	portfolio_site = models.URLField(blank=True)
+	profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
 
 
-  def __str__(self):
-    return self.user.username
+	def __str__(self):
+		return self.user.username
+
+	# def get_absolute_url(self):
+	# 	return reverse('profile', args=[str(self.id)])
 
 class Subject(models.Model):
     """Model representing the subject of the article."""
